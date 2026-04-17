@@ -18,7 +18,7 @@ k_main(){
     boot_init_last();
     init_secure();
     security_loop();
-
+    init();
     vfr_init();
     schedule();
     __init__();

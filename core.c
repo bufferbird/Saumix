@@ -20,6 +20,19 @@ static void bss_init(void) {
     }
 }
 
+static void __register_setup(void){
+    
+}
+
+/*       
+    Here we are, we just need to init last things like the register Main Register Controlling Unit, so the registers get 
+    Controlled, yes, by a register, dont ask
+*/
+
+static void boot_and_last_inits(){
+    k_displ_print("[SYS] Last setups, please wait.");
+    int rMRCU = 1; 
+}
 
 k_main(){
     bss_init();

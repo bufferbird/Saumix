@@ -1,6 +1,6 @@
 #ifndef VFR_INIT.H
 #define VFR_INIT.H
 
-void vfr_init();
+void led_init();
 
 #endif 

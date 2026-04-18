@@ -10,16 +10,23 @@
 #include "src/src/userapps/terminal.h"
 #include "src/src/security/mmu/mmu.h"
 
-static void __init__(void){
-    // ...
+extern unsigned char __bss_start;
+extern unsigned char __bss_end;
+
+static void bss_init(void) {
+    unsigned char *dst = &__bss_start;
+    while (dst < &__bss_end) {
+        *dst++ = 0;
+    }
 }
 
+
 k_main(){
+    bss_init();
     boot_init_last();
     init_secure();
     security_loop();
     init();
     vfr_init();
     schedule();
-    __init__();
 }

@@ -1,6 +1,5 @@
 #include "vfr_init.h"
 #include "src\src\hardware\hardware.h"
-
 #include "stdDatatypes"
 
 /* Now we need a nice struct, to define virtual function register. */
@@ -13,10 +12,9 @@ typedef volatile struct {
     uint32_t rsvd : 27; // Die restlichen 27 Bits auffüllen (für 32-Bit)
 } gpio_reg_t;
 
-#define GPIO_BASE_ADDR 0x3FF44000 
 
 void led_init() {
-    gpio_reg_t *rGPIO = (gpio_reg_t*)GPIO_BASE_ADDR;
+    gpio_reg_t *rGPIO = (gpio_reg_t*)GPIO_BASE;
 
     rGPIO->mode = 1;   // Setzt Modus auf Output
     rGPIO->pin0 = 1;   // Rote LED an!

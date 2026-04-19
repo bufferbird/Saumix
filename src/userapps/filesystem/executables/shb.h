@@ -3,7 +3,7 @@
 
 void shb_exit(char* arg);
 void shb_alert(char* arg);
-
+void shb_echo(char* arg);
 
 typedef struct{
     char* name;

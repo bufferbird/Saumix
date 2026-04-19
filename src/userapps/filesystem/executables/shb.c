@@ -3,7 +3,7 @@ void shb_echo(char* arg) {
 }
 
 void shb_alert(char* arg) {
-    // Hier käme dein !alert id = warnbox Logik rein
+    // !alert id = warnbox Logik reinmache
     kprintf("[SHB-SECURITY] ALERT TRIGGERED: %s\n", arg ? arg : "Generic Error");
 }
 

@@ -2,7 +2,7 @@
 #define SHB_H
 
 void shb_exit(char* arg);
-
+void shb_alert(char* arg);
 
 
 typedef struct{

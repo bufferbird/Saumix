@@ -1,6 +1,10 @@
 #ifndef SHB_H
 #define SHB_H
 
+void shb_exit(char* arg);
+
+
+
 typedef struct{
     char* name;
     void (*func)(char* arg);

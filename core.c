@@ -9,6 +9,10 @@
 #include "src/src/dispIO/saumixIO.h"
 #include "src/src/userapps/terminal.h"
 #include "src/src/security/mmu/mmu.h"
+#include "src/userapps/main_terminal.h"
+#include "src/userapps/filesystem/filesystem.h"
+#include "src/font.h"
+#include "src/panic.c"
 
 // --- Hardware Absicherungen ---
 #ifndef MAILBOX_READ
@@ -66,22 +70,23 @@ static void vga_init(void){
 
     mailbox[21] = 0; 
 
-    // Senden
+    // Send
     while (*(volatile uint32_t*)MAILBOX_STATUS & 0x80000000);
     *(volatile uint32_t*)MAILBOX_WRITE = ((uint32_t)(uintptr_t)mailbox & ~0xF) | 8;
 
-    // Warten
+    // Wait
     while (1) {
         while (*(volatile uint32_t*)MAILBOX_STATUS & 0x40000000);
         uint32_t response = *(volatile uint32_t*)MAILBOX_READ;
         if ((response & 0xF) == 8) break;
     }
 
-    // Pointer global speichern (Maskierung für CPU-Zugriff)
+    // Pointer global speichern 
     fb_ptr = (uint32_t*)(uintptr_t)(mailbox[20] & 0x3FFFFFFF);
 }
 
-/*Soo, here we are, we just need to init last things, like the rMCPU wich controlls the vfr, yes, a register controlling registers;
+/*
+  Soo, here we are, we just need to init last things, like the rMCPU wich controlls the vfr, yes, a register controlling registers;
   am i a genius, or a maniac?
 */
 
@@ -90,7 +95,6 @@ static void boot_and_last_inits(){
     int rMCPU = 1;     
 }
 
-// k_main() braucht einen Rückgabetyp, meist void
 void k_main(){
     bss_init();      // 1. Zuerst BSS (leert auch das mailbox array)
     vga_init();      // 2. Dann Grafik

@@ -1,5 +1,5 @@
 #include "saumixIO.h"
-#include "C:\Users\ak\Mini PC\src\src\stdDatatypes.h"
+#include "src\src\stdDatatypes.h" // yes, \, here were standing a C:\ path...
 #include "src/src/hardware/hardware.h"
 
 
